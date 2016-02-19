@@ -1,0 +1,129 @@
+/*body{
+	background-image: url('../image/BG.JPG');
+	background-repeat: no-repeat;
+	background-attachment: fixed; 
+	background-size: 100% 1100px;
+	font-family: tahoma;
+}*/
+.margin_top{
+	margin-top: 20px;
+}
+.centered{
+	text-align:center;
+}
+.fixed_page{
+	min-width: 1200px;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+.container-fixed {
+  	max-width: auto;
+}
+.row{
+	display: block;
+	word-wrap: break-word;
+}
+.fixed {
+    position: fixed;
+    bottom:0;
+    left:0;
+ }
+.vertical-offset-100{
+    padding-top:40px;
+}
+.gap_page{
+	margin: 10 10 10 10;
+}
+.padding{
+	padding: 10 10 10 10;
+}
+.gray{
+	background-color: #DBDBDB;
+}
+.black{
+	background-color: #000000;
+}
+.panel{
+	width: 400px;
+	margin: 0 auto;
+}
+.col-fixed{
+	width: 300px;
+	float: left;
+}
+.col-fixed2{
+	margin-left: 10px;
+	width: 875px;
+	float: left;
+}
+
+
+/*  ========   */
+
+
+.col-sm-2{
+	float: left;
+
+}
+.col-sm-3{
+	float: left;
+
+}
+.col-fixed2 .col-sm-4 {
+	float: left;
+
+}
+.col-fixed2 .col-sm-4 .form-control{
+	width: 285px !important;
+}
+.col-fixed2 label{
+	margin-left: 10px;
+	float: left;
+}
+/*  ========   */
+
+
+.well-fixed{
+	width: 600px;
+}
+.float{
+	float: left;
+}
+.img_menu{
+	width: 240px;
+	margin: 0 auto;
+}
+.clean{
+	clear: both;
+}
+.navbar{
+	opacity: 1;
+}
+.col-sm-2{
+	text-align: left;
+}
+.nogap{
+	padding-right: 5px !important;
+}
+.font_big{
+	display: inline-block;
+	max-width: 100%;
+	margin-bottom: 5px;
+	font-weight: 700;;
+}
+.ugency{
+	text-align: center;
+}
+.area{
+	height: 100px !important;
+}
+.red{
+	color:red;
+}
+.right {
+	text-align: right;
+	width: 23%;
+}
+.table-striped td{
+	height: 20px !important;
+}
