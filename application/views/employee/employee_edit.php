@@ -1,46 +1,44 @@
 <div class="col-md-12 ">
     <div class="row">
         <div class="col-sm-12">
-            <center><h4><b>เพิ่มข้อมูลบุคคล</b></h4></center>
+            <center><h4><b>แก้ไขข้อมูลบุคคล</b></h4></center>
             <a class="btn btn-success " href="<?php echo base_url(); ?>index.php/EmployeeController/employee_detail"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true">&nbsp;ย้อนกลับ</span></a>
             <hr width="100%">
             
             <div class="panel-body form-horizontal payment-form">
-                <form id="employee_add" method="post" action="<?php echo base_url(); ?>index.php/EmployeeController/insert_employee">
+                <form id="employee_add" method="post" action="<?php echo base_url(); ?>index.php/EmployeeController/save_employee/<?php echo $employee[0]['em_id'];?>">
                     <fieldset> 
-
-
                         <div class="form-group">
                             <label  class="col-sm-2 control-label">คำนำหน้า :</label>
                             <div class="col-sm-2">
                                 <select class="form-control request"   id="gen" name="gen">
                                     <option value="">----คำนำหน้า----</option>
-                                    <option value="นาย">นาย</option>
-                                    <option value="นางสาว">นางสาว</option>
-                                    <option value="นาง">นาง</option>
+                                    <?php foreach ($gen as $row) { ?>
+                                        <option value="<?php echo $row['gen_name']; ?>" <?php if($row['gen_name'] == $employee[0]['em_gen'] ){ echo 'selected="true"';} ?>><?php echo $row['gen_name']; ?></option>
+                                    <?php } ?>
                                 </select>
                             </div>
                             <label  class="col-sm-2 control-label">ชื่อ :</label>
                             <div class="col-sm-2">
-                                <input class="form-control selectValue request" maxlength="40" type="text" id="name" name="name"     >
+                                <input class="form-control selectValue request" maxlength="40" type="text" id="name" name="name"   value="<?php echo $employee[0]['em_name'];?>"  >
                             </div>
                             <label  class="col-sm-2 control-label">นามสกุล :</label>
                             <div class="col-sm-2">
-                                <input class="form-control selectValue request" maxlength="40"  type="text" id="lastName" name="lastName"     >
+                                <input class="form-control selectValue request" maxlength="40"  type="text" id="lastName" name="lastName"     value="<?php echo $employee[0]['em_lastname'];?>">
                             </div>
                         </div>
                         <div class="form-group">
                             <label  class="col-sm-2 control-label">เลขที่บัตรประจำตัวประชาชน :</label>
                             <div class="col-sm-2">
-                                <input class="form-control selectValue employeeId request"  type="number" maxlength="13" id="employeeId " name="employeeId"  >
+                                <input class="form-control selectValue employeeId request"  type="number" maxlength="13" id="employeeId " name="employeeId"  value="<?php echo $employee[0]['em_employeeid'];?>">
                             </div>
                             <label  class="col-sm-2 control-label">เบอร์ที่ติดต่อได้ :</label>
                             <div class="col-sm-2">
-                                <input class="form-control selectValue phonenumber request" type="number"   maxlength="10" id="phonenumber" name="phonenumber" >
+                                <input class="form-control selectValue phonenumber request" type="number"   maxlength="10" id="phonenumber" name="phonenumber" value="<?php echo $employee[0]['em_phonenumber'];?>">
                             </div>
                             <label  class="col-sm-2 control-label">ที่อยู่ปัจจุบัน :</label>
                             <div class="col-sm-2">
-                                <textarea  class="form-control selectValue request"  id="address" name="address" ></textarea>
+                                <textarea  class="form-control selectValue request"  id="address" name="address" ><?php echo $employee[0]['em_address'];?></textarea>
                             </div>
                         </div>
                         
@@ -50,7 +48,7 @@
                                 <select class="form-control request" required id="subdistrict" name="subdistrict">
                                     <option value="">---ตำบล---</option>
                                     <?php foreach ($subdistrict as $row) { ?>
-                                        <option value="<?php echo $row['sub_id']; ?>"><?php echo $row['sub_name']; ?></option>
+                                    <option value="<?php echo $row['dis_id']; ?>"  <?php if($row['sub_name'] == $employee[0]['em_subdistrict'] ){ echo 'selected="true"';} ?> ><?php echo $row['sub_name']; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -59,7 +57,7 @@
                                 <select class="form-control request" required id="district" name="district">
                                     <option value="">---อำเภอ---</option>
                                     <?php foreach ($district as $row) { ?>
-                                        <option value="<?php echo $row['dis_id']; ?>"><?php echo $row['dis_name']; ?></option>
+                                        <option value="<?php echo $row['dis_id']; ?>" <?php if($row['dis_name'] == $employee[0]['em_district'] ){ echo 'selected="true"';} ?>><?php echo $row['dis_name']; ?></option>
                                     <?php } ?>
                                     
                                 </select>
@@ -69,7 +67,7 @@
                                 <select class="form-control request" required id="province" name="province">
                                     <option value="">---จังหวัด---</option>
                                     <?php foreach ($province as $row) { ?>
-                                        <option value="<?php echo $row['pro_id']; ?>"><?php echo $row['pro_name']; ?></option>
+                                        <option value="<?php echo $row['pro_id']; ?>" <?php if($row['pro_name'] == $employee[0]['em_province'] ){ echo 'selected="true"';} ?>><?php echo $row['pro_name']; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -77,7 +75,7 @@
                         <div class="form-group">
                             <label  class="col-sm-2 control-label">รหัสไปรษณีย์ :</label>
                             <div class="col-sm-2">
-                                <input class="form-control selectValue postCode request" type="number" maxlength="5" id="postCode" name="postCode"  required>
+                                <input class="form-control selectValue postCode request" type="number" maxlength="5" id="postCode" name="postCode"  value="<?php echo $employee[0]['em_postcode'];?>">
                             </div>
                         </div>
                         <div class="form-group text-right">
@@ -134,11 +132,12 @@
   </div>
 <script type="text/javascript">
     $(document).ready(function() {
-      /*  $("#subdistrict").change(function(){
+        $("#subdistrict").change(function(){
             $("#district").empty();//ล้างข้อมูล
             $("#province").empty();//ล้างข้อมูล
             var  dis_id = $('#subdistrict').val();
-            //alert("AA = "+dis_id);
+            //alert(dis_id);
+            
             $.ajax({
                     type: "POST",
                     url: "<?php echo base_url(); ?>index.php/EmployeeController/change_subdistrict/"+dis_id,
@@ -154,12 +153,13 @@
                         $("#province").html(opt_pro);
                     },
             });
-        });*/
+        });
 
         $("#district").change(function(){
             $("#subdistrict").empty();//ล้างข้อมูล
             $("#province").empty();//ล้างข้อมูล
             var  dis_id = $('#district').val();
+            //alert(dis_id);
             $.ajax({
                     type: "POST",
                     url: "<?php echo base_url(); ?>index.php/EmployeeController/change_district_get_subdistrict/"+dis_id,

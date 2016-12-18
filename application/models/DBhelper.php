@@ -12,7 +12,20 @@ class DBhelper extends CI_Model {
         //$result = $this->db->get();
         //return $result->result_array();
     }
+    public function get_employee($id) {
+        $sql = "select * from tb_employee where em_id  = '$id'";
+        $result = $this->db->query($sql);
+        $result = $result->result_array();
+        return $result;
+        
+    }
 
+    public function get_list_gen() {
+        $sql = "select * from tb_gen order by gen_id desc";
+        $result = $this->db->query($sql);
+        $result = $result->result_array();
+        return $result;
+    }
     public function get_list_province() {
         $sql = "select * from tb_province order by pro_name desc";
         $result = $this->db->query($sql);
@@ -42,6 +55,11 @@ class DBhelper extends CI_Model {
 
     public function get_subName($id) {
         $sql = "select * from tb_subdistrict where sub_id = ".$id;
+        $result = $this->db->query($sql);
+        return $result;
+    }
+    public function get_subName_xx($id) {
+        $sql = "select * from tb_subdistrict where dis_id = ".$id;
         $result = $this->db->query($sql);
         return $result;
     }
@@ -115,15 +133,36 @@ class DBhelper extends CI_Model {
         $this->db->set('em_employeeid',$employeeId);
         $this->db->set('em_phonenumber',$phonenumber);
         $this->db->set('em_address',$address);
-        $this->db->set('em_subdistrict',"ต.".$subdistrict);
-        $this->db->set('em_district',"อ.".$district);
-        $this->db->set('em_province',"จ.".$province);
+        $this->db->set('em_subdistrict',$subdistrict);
+        $this->db->set('em_district',$district);
+        $this->db->set('em_province',$province);
         $this->db->set('em_postcode',$postCode);
         $this->db->set('create_date',$date);
         $this->db->set('create_user',$user);
         $this->db->set('update_date',$date);
         $this->db->set('update_user',$user);
         $this->db->insert('tb_employee');
+        if ($this->db->affected_rows() > 0) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+    public function save_employee($user,$gen,$name,$lastName,$employeeId,$phonenumber,$address,$subdistrict,$district,$province,$postCode,$date,$id) {
+        $this->db->set('em_gen',$gen);
+        $this->db->set('em_name',$name);
+        $this->db->set('em_lastname',$lastName);
+        $this->db->set('em_employeeid',$employeeId);
+        $this->db->set('em_phonenumber',$phonenumber);
+        $this->db->set('em_address',$address);
+        $this->db->set('em_subdistrict',$subdistrict);
+        $this->db->set('em_district',$district);
+        $this->db->set('em_province',$province);
+        $this->db->set('em_postcode',$postCode);
+        $this->db->set('update_date',$date);
+        $this->db->set('update_user',$user);
+        $this->db->where('em_id',$id);
+        $this->db->update('tb_employee');
         if ($this->db->affected_rows() > 0) {
             return 1;
         } else {

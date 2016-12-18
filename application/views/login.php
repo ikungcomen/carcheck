@@ -33,14 +33,9 @@
                 <div id="alert-message" class="alert alert-warning alert-dismissible" role="alert">ชื่อผู้ใช้ของท่านยังไม่ผ่านการอนุมัติ</div>
             <?php }?>
 
-            <form id="aaa" class="form-signin" action="<?php echo base_url(); ?>index.php/logincontoller/checkLogin" method="post">
-                <input type="text" id="inputEmail"  name="username" class="form-control" placeholder="Username" required autofocus>
-                <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
-                <!--<div id="remember" class="checkbox">
-                    <label>
-                        <input type="checkbox" value="remember-me"> Remember me
-                    </label>
-                </div>-->
+            <form id="confirm_login"  method="post" class="form-signin" action="<?php echo base_url(); ?>index.php/Logincontoller/checkLogin">
+                <input type="text"     id="inputEmail"    name="inputEmail"    class="form-control" placeholder="Username" >
+                <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" >
                 <a class="non_underline" href="<?php echo base_url(); ?>index.php/Welcome/load_register" class="forgot-password">
                 ลงทะเบียน ?
             </a><br><br>
@@ -102,7 +97,9 @@
                     $('#value_message').html('กรุณาระบุ password');
                     $('#myModal').modal('show');
                  }else{
-                    $("#aaa").submit();
+                    $("#confirm_login").submit();
+                    
+                    
                  }
                 
             });

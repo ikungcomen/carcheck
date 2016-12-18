@@ -27,6 +27,15 @@
         <!--style="float:right;list-style-type:none;"-->
         <!--border-right:1px solid #bbb;-->
         <style>
+            input.request{
+                border-color: red;
+            }
+            select.request{
+                border-color: red;
+            }
+            textarea.request{
+                border-color: red;
+            }
           a.non_underline {
               text-decoration: none;
           }
